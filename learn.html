@@ -1,0 +1,2226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>University of Manila</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --crimson: #C0392B;
+    --crimson-dark: #922B21;
+    --crimson-light: #E74C3C;
+    --gold: #D4AC0D;
+    --gold-light: #F4D03F;
+    --navy: #1A1F36;
+    --navy-mid: #242A45;
+    --navy-light: #2E3554;
+    --cream: #FDF6EC;
+    --cream-dark: #F5ECD7;
+    --text: #1A1F36;
+    --muted: #6B7280;
+    --white: #ffffff;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    position: relative;
+    text-align: center;
+    padding: 60px 24px 0;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(192,57,43,0.25) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .seal-ring {
+    width: 100px; height: 100px;
+    border-radius: 50%;
+    border: 3px solid var(--gold);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    animation: rotateSlow 20s linear infinite;
+    position: relative;
+  }
+
+  .seal-ring::before {
+    content: '';
+    position: absolute;
+    inset: 6px;
+    border-radius: 50%;
+    border: 1px solid rgba(212,172,13,0.4);
+  }
+
+  .seal-ring img {
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    animation: rotateSlow 20s linear infinite reverse;
+    object-fit: cover;
+  }
+
+  @keyframes rotateSlow { to { transform: rotate(360deg); } }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--white) 40%, var(--gold-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+  }
+
+  .header .sub {
+    font-size: 13px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 48px;
+  }
+
+  /* ── TABS ── */
+  .tabs-wrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 16px 80px;
+  }
+
+  .tab-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+
+  .tab-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.65);
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.25s;
+    letter-spacing: 0.3px;
+  }
+
+  .tab-btn:hover {
+    background: rgba(255,255,255,0.11);
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .tab-btn.active {
+    background: var(--crimson);
+    border-color: var(--crimson-light);
+    color: var(--white);
+    box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+  }
+
+  /* ── CONTENT PANELS ── */
+  .tab-panel {
+    display: none;
+    animation: fadeUp 0.4s ease;
+  }
+
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CARD ── */
+  .card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 20px;
+  }
+
+  .card-red {
+    background: linear-gradient(135deg, rgba(192,57,43,0.18), rgba(146,43,33,0.08));
+    border-color: rgba(192,57,43,0.3);
+  }
+
+  .card-gold {
+    background: linear-gradient(135deg, rgba(212,172,13,0.1), rgba(212,172,13,0.03));
+    border-color: rgba(212,172,13,0.25);
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+    opacity: 0.9;
+  }
+
+  /* ── TYPOGRAPHY ── */
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--cream);
+    margin-bottom: 12px;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 1.85;
+    color: rgba(255,255,255,0.72);
+    margin-bottom: 16px;
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  .accent { color: var(--gold-light); font-weight: 500; }
+
+  /* ── HYMN BLOCK ── */
+  .hymn-block {
+    background: rgba(0,0,0,0.25);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 24px 0;
+    font-style: italic;
+    font-size: 15px;
+    line-height: 2;
+    color: rgba(255,255,255,0.82);
+  }
+
+  .hymn-block .hymn-title {
+    font-family: 'Playfair Display', serif;
+    font-style: normal;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212,172,13,0.3), transparent);
+    margin: 28px 0;
+  }
+
+  /* ── MISSION ACE ── */
+  .ace-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .ace-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.09);
+    border-radius: 16px;
+    padding: 24px;
+    transition: transform 0.2s, background 0.2s;
+  }
+
+  .ace-card:hover {
+    transform: translateY(-4px);
+    background: rgba(255,255,255,0.08);
+  }
+
+  .ace-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1;
+    color: var(--crimson-light);
+    margin-bottom: 12px;
+  }
+
+  .ace-card h4 {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .ace-card p {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 0;
+  }
+
+  /* ── VISION / MOTTO HERO ── */
+  .hero-quote {
+    text-align: center;
+    padding: 48px 20px;
+  }
+
+  .hero-quote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--white);
+    max-width: 780px;
+    margin: 0 auto 24px;
+  }
+
+  .hero-quote .trilogy {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    flex-wrap: wrap;
+    margin-top: 32px;
+  }
+
+  .trilogy-item { text-align: center; }
+
+  .trilogy-item .tl-icon {
+    width: 52px; height: 52px;
+    border-radius: 50%;
+    background: rgba(192,57,43,0.15);
+    border: 1px solid rgba(192,57,43,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 22px;
+  }
+
+  .trilogy-item p {
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0;
+  }
+
+  /* ── PROFESSORS ── */
+  .prof-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 24px;
+  }
+
+  .prof-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 28px 20px 22px;
+    text-align: center;
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .prof-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold));
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+
+  .prof-card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(192,57,43,0.4);
+  }
+
+  .prof-card:hover::before { opacity: 1; }
+
+  .prof-avatar {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--crimson-dark), var(--navy-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    border: 2px solid rgba(212,172,13,0.45);
+    box-shadow: 0 0 0 4px rgba(192,57,43,0.12);
+    overflow: hidden;
+    transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    flex-shrink: 0;
+  }
+
+  .prof-card:hover .prof-avatar {
+    border-color: rgba(212,172,13,0.75);
+    box-shadow: 0 0 0 5px rgba(192,57,43,0.2);
+  }
+
+  .prof-avatar img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    border-radius: 50%;
+  }
+
+  .prof-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.35;
+    margin-bottom: 8px;
+  }
+
+  .prof-role {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(212,172,13,0.1);
+    border: 1px solid rgba(212,172,13,0.2);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  /* ── OS SECTION ── */
+  .os-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 24px;
+  }
+
+  .os-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 18px;
+    overflow: hidden;
+    transition: transform 0.2s;
+  }
+
+  .os-card:hover { transform: translateY(-5px); }
+
+  .os-header {
+    padding: 24px 24px 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .os-logo {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+    flex-shrink: 0;
+  }
+
+  .os-logo img { width: 100%; height: 100%; object-fit: contain; }
+  .os-logo.win { background: rgba(0,120,215,0.2); }
+  .os-logo.mac { background: rgba(212,211,211,0.15); }
+
+  .os-header h3 { margin-bottom: 4px; font-size: 1.1rem; }
+  .os-header .os-maker { font-size: 11px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+
+  .os-body { padding: 0 24px 24px; }
+  .os-body p { font-size: 14px; line-height: 1.75; }
+
+  .version-list {
+    list-style: none;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .version-list li {
+    font-size: 13px;
+    color: rgba(255,255,255,0.65);
+    padding: 7px 12px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 8px;
+    border-left: 2px solid var(--crimson);
+  }
+
+  /* ── TIMELINE ── */
+  .timeline {
+    position: relative;
+    padding-left: 32px;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px; top: 0; bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--crimson), transparent);
+  }
+
+  .tl-item {
+    position: relative;
+    margin-bottom: 28px;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -28px; top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--crimson-light);
+    border: 2px solid var(--navy);
+    box-shadow: 0 0 0 3px rgba(192,57,43,0.25);
+  }
+
+  .tl-year {
+    font-size: 11px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .tl-item p { margin-bottom: 0; font-size: 14px; }
+
+  /* ── MAP CARD ── */
+  .map-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(212,172,13,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .map-card-header {
+    padding: 20px 40px 14px;
+    border-bottom: 1px solid rgba(212,172,13,0.1);
+  }
+
+  .map-card-header .section-label { margin-bottom: 6px; }
+
+  .map-card-header h3 { margin-bottom: 4px; }
+
+  .map-card-header .map-address {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 0;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .map-card iframe {
+    display: block;
+    width: 100%;
+    height: 340px;
+    border: none;
+  }
+
+  /* ── DEVELOPER SECTION ── */
+  .dev-hero { text-align: center; padding: 40px; }
+
+  .dev-photo {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--gold);
+    box-shadow: 0 0 0 6px rgba(212,172,13,0.15);
+    margin: 0 auto 20px;
+    display: block;
+  }
+
+  /* ── BACK BUTTON ── */
+  .back-btn {
+    position: fixed;
+    bottom: 28px; left: 28px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(26,31,54,0.92);
+    border: 1px solid rgba(212,172,13,0.35);
+    color: var(--gold);
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 40px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    backdrop-filter: blur(10px);
+    transition: all 0.25s;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+
+  .back-btn:hover {
+    background: var(--crimson);
+    border-color: var(--crimson-light);
+    color: var(--white);
+    transform: translateX(-3px);
+  }
+
+  .back-btn svg { width: 15px; height: 15px; flex-shrink: 0; }
+
+  /* ══════════════════════════════════════
+     ── PROGRAMMING ACTIVITIES ──
+  ══════════════════════════════════════ */
+
+  .activity-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+
+  .activity-pill {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .activity-pill:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    border-color: rgba(255,255,255,0.2);
+  }
+
+  .activity-pill.active {
+    background: linear-gradient(135deg, rgba(192,57,43,0.85), rgba(146,43,33,0.85));
+    border-color: var(--crimson-light);
+    color: var(--white);
+    box-shadow: 0 3px 14px rgba(192,57,43,0.35);
+  }
+
+  .activity-panel { display: none; animation: fadeUp 0.3s ease; }
+  .activity-panel.active { display: block; }
+
+  .activity-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+
+  .activity-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .activity-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(212,172,13,0.08);
+    border: 1px solid rgba(212,172,13,0.2);
+    padding: 4px 10px;
+    border-radius: 20px;
+  }
+
+  .activity-desc {
+    font-size: 14px;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 18px;
+    line-height: 1.65;
+  }
+
+  .activity-workspace {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  @media (max-width: 700px) { .activity-workspace { grid-template-columns: 1fr; } }
+
+  /* ── Code Pane ── */
+  .code-pane {
+    background: #0d1117;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .code-pane-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .traffic-lights { display: flex; gap: 5px; }
+  .traffic-lights span { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .tl-r { background: #FF5F57; }
+  .tl-y { background: #FEBC2E; }
+  .tl-g { background: #28C840; }
+
+  .file-label { font-family: monospace; font-size: 11px; color: rgba(255,255,255,0.4); }
+
+  .code-body {
+    max-height: 420px;
+    overflow-y: auto;
+    padding: 20px;
+  }
+
+  .code-body::-webkit-scrollbar { width: 3px; }
+  .code-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 2px; }
+
+  .code-body pre {
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+    font-size: 12px;
+    line-height: 1.8;
+    color: #e6edf3;
+    white-space: pre;
+    overflow-x: auto;
+    margin: 0;
+  }
+
+  .tok-tag  { color: #7ee787; }
+  .tok-attr { color: #79c0ff; }
+  .tok-str  { color: #a5d6ff; }
+  .tok-kw   { color: #ff7b72; }
+  .tok-fn   { color: #d2a8ff; }
+  .tok-num  { color: #f2cc60; }
+  .tok-cmt  { color: #8b949e; font-style: italic; }
+  .tok-prop { color: #79c0ff; }
+  .tok-val  { color: #a5d6ff; }
+  .tok-punct{ color: rgba(255,255,255,0.5); }
+
+  /* ── Demo Pane ── */
+  .demo-pane {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  .demo-pane-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: rgba(255,255,255,0.04);
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+
+  .demo-indicator {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #28C840;
+    box-shadow: 0 0 6px #28C840;
+    animation: pulseG 2s infinite;
+  }
+
+  @keyframes pulseG { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .demo-pane-header span {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* ── Demo Form Styles ── */
+  .demo-form {
+    padding: 20px;
+    background: #fff;
+    min-height: 200px;
+  }
+
+  .demo-form label { font-size: 13px; color: #555; display: block; margin-top: 8px; }
+
+  .demo-form input[type="text"],
+  .demo-form input[type="number"],
+  .demo-form input[type="password"] {
+    width: 100%;
+    padding: 9px 12px;
+    margin: 5px 0;
+    font-size: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .demo-form .df-btn {
+    width: 100%;
+    padding: 9px;
+    margin-top: 10px;
+    font-size: 15px;
+    cursor: pointer;
+    background: #1a1f36;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+  }
+
+  .demo-form .df-btn:hover { background: #C0392B; }
+  .demo-form .df-btn-sec { background: #555; }
+  .demo-form .df-btn-sec:hover { background: #333; }
+
+  .demo-form .result-box {
+    background: #f0f4ff;
+    border: 1px solid #c0c8f0;
+    border-radius: 6px;
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1a1f36;
+    min-height: 38px;
+    display: flex;
+    align-items: center;
+  }
+
+  .demo-form .result-box.err { background: #fff0f0; border-color: #f0c0c0; color: #c0392b; }
+  .demo-form .result-box.ok  { background: #f0fff4; border-color: #c0f0c8; color: #1a7a1a; }
+
+  .demo-form .hw-wrap {
+    background: #070000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 160px;
+    border-radius: 6px;
+  }
+
+  .demo-form .hw-inner {
+    background: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .demo-form .hw-inner .df-btn { width: auto; padding: 8px 24px; margin: 0; }
+
+  .demo-form .timer-display {
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-align: center;
+    color: #1a1f36;
+    margin: 10px 0;
+    font-family: monospace;
+    letter-spacing: 2px;
+  }
+
+  .demo-form .timer-display.running { color: #C0392B; }
+
+  /* ── Calculator Demo ── */
+  .cal-demo {
+    background: #3a3a3a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    border-radius: 0 0 16px 16px;
+  }
+
+  .cal-wrap {
+    background: #000;
+    border-radius: 15px;
+    overflow: hidden;
+    max-width: 380px;
+    width: 100%;
+  }
+
+  .cal-display {
+    background: #222;
+    color: #fff;
+    font-size: 2.2rem;
+    text-align: right;
+    padding: 16px 20px;
+    border: none;
+    width: 100%;
+    outline: none;
+    font-family: 'DM Sans', monospace;
+    letter-spacing: 1px;
+  }
+
+  .cal-keys {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    padding: 16px;
+  }
+
+  .cal-btn {
+    height: 70px;
+    width: 100%;
+    border-radius: 35px;
+    border: none;
+    background: rgb(221,170,39);
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: filter 0.15s, transform 0.1s;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .cal-btn:hover { filter: brightness(1.15); }
+  .cal-btn:active { transform: scale(0.95); }
+  .cal-btn.op { background: rgb(100,100,100); }
+
+  /* ── Auth Demo ── */
+  .auth-tabs {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid #e0e0e0;
+  }
+
+  .auth-tab {
+    flex: 1;
+    padding: 10px;
+    background: #f5f5f5;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.2s;
+  }
+
+  .auth-tab.active {
+    background: #fff;
+    color: #1a1f36;
+    border-bottom: 2px solid #C0392B;
+    margin-bottom: -2px;
+  }
+
+  .auth-screen { display: none; padding: 20px; }
+  .auth-screen.active { display: block; }
+
+  .auth-form-title { font-size: 1.2rem; font-weight: 700; color: #1a1f36; margin-bottom: 16px; }
+
+  .auth-input {
+    width: 100%;
+    padding: 9px 12px;
+    margin: 5px 0 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: block;
+  }
+
+  .auth-btn {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    background: #1a1f36;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    margin-top: 4px;
+  }
+
+  .auth-btn:hover { background: #C0392B; }
+
+  .auth-msg {
+    padding: 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-top: 10px;
+    display: none;
+  }
+
+  .auth-msg.ok  { background: #f0fff4; color: #1a7a1a; border: 1px solid #c0f0c8; display: block; }
+  .auth-msg.err { background: #fff0f0; color: #c0392b; border: 1px solid #f0c0c0; display: block; }
+
+  .auth-success {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 220px;
+    padding: 24px;
+    text-align: center;
+  }
+
+  .auth-success.active { display: flex; }
+  .auth-success h2 { color: #1a1f36; font-size: 1.2rem; margin-bottom: 12px; font-family: 'DM Sans', sans-serif; }
+  .auth-success p  { color: #555; font-size: 14px; margin-bottom: 18px; }
+
+  .auth-success .logout-btn {
+    padding: 9px 24px;
+    background: #C0392B;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--crimson); border-radius: 3px; }
+
+  @media (max-width: 600px) {
+    .card { padding: 24px 20px; }
+    .tab-btn { font-size: 12px; padding: 8px 14px; }
+    .back-btn { bottom: 16px; left: 16px; }
+    .prof-grid { grid-template-columns: repeat(2, 1fr); }
+    .map-card-header { padding: 16px 20px 12px; }
+    .map-card iframe { height: 260px; }
+  }
+
+  /* ══════════════════════════════════════
+     ── CS EVENTS GALLERY ──
+  ══════════════════════════════════════ */
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+  }
+
+  .event-card {
+    position: relative;
+    border-radius: 14px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid rgba(212,172,13,0.15);
+    aspect-ratio: 16/10;
+  }
+
+  .event-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.45s ease, filter 0.45s ease;
+  }
+
+  .event-card:hover img {
+    transform: scale(1.07);
+    filter: brightness(0.45);
+  }
+
+  .event-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(14,11,7,0.75) 0%, rgba(14,11,7,0.1) 55%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .event-label {
+    position: absolute;
+    bottom: 14px;
+    left: 0; right: 0;
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--gold-light);
+    z-index: 2;
+    padding: 0 12px;
+    opacity: 0.75;
+    transition: opacity 0.35s, transform 0.35s, font-size 0.35s;
+    transform: translateY(4px);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.8);
+  }
+
+  .event-card:hover .event-label {
+    opacity: 1;
+    transform: translateY(0);
+    font-size: 1.15rem;
+  }
+
+  @media (max-width: 600px) {
+    .events-grid { grid-template-columns: 1fr; }
+    .event-card { aspect-ratio: 16/9; }
+  }
+
+  /* ══════════════════════════════════════
+     ── DEVELOPER PHOTOS ──
+  ══════════════════════════════════════ */
+
+  .family-photo-wrap {
+    margin: 28px 0 10px;
+    text-align: center;
+  }
+
+  .family-section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin-bottom: 14px;
+    display: block;
+  }
+
+  .family-photo {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 2px solid rgba(212,172,13,0.3);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    display: block;
+    margin: 0 auto;
+  }
+
+  .friends-section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.85;
+    margin: 28px 0 14px;
+    display: block;
+    text-align: center;
+  }
+
+  .friends-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
+  }
+
+  .friend-photo {
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid rgba(212,172,13,0.2);
+    display: block;
+    transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+  }
+
+  .friend-photo:hover {
+    transform: scale(1.04);
+    border-color: rgba(212,172,13,0.6);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+  }
+
+  @media (max-width: 600px) {
+    .friends-grid { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+    .family-photo { max-width: 100%; }
+  }
+
+  @media (max-width: 380px) {
+    .friends-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<!-- ── BACK BUTTON ── -->
+<a href="index.html" class="back-btn">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="15 18 9 12 15 6"></polyline>
+  </svg>
+  Back
+</a>
+
+<header class="header">
+  <div class="seal-ring">
+    <img src="images/um.jfif" alt="UM Seal">
+  </div>
+  <h1>University of Manila</h1>
+  <p class="sub">Patria &nbsp;·&nbsp; Scientia &nbsp;·&nbsp; Virtus</p>
+</header>
+
+<div class="tabs-wrapper">
+  <nav class="tab-nav" id="mainNav">
+    <button class="tab-btn active" data-tab="history">UM History</button>
+    <button class="tab-btn" data-tab="mission">UM Mission</button>
+    <button class="tab-btn" data-tab="vision">UM Vision</button>
+    <button class="tab-btn" data-tab="motto">UM Motto</button>
+    <button class="tab-btn" data-tab="cs">Computer Science</button>
+    <button class="tab-btn" data-tab="professors">Professors</button>
+    <button class="tab-btn" data-tab="os">Operating Systems</button>
+    <button class="tab-btn" data-tab="activities">Programming Activities</button>
+    <button class="tab-btn" data-tab="developer">Website Developer</button>
+  </nav>
+
+  <!-- ── HISTORY ── -->
+  <div class="tab-panel active" id="tab-history">
+    <div class="card card-red">
+      <p class="section-label">Founded 1913</p>
+      <h2>UM History</h2>
+      <p>On October 5, 1913, a group of four young men and a woman, with ages from fifteen to twenty-one, met for breakfast at the Palma de Mallorca, a popular restaurant beside the Sto. Domingo Church in Intramuros, Manila. The five were Dr. Apolinario G. de los Santos, his brother Dr. Mariano V. de los Santos, his sister Maria de los Santos, and two friends Dr. Buenaventura J. Bello and Atty. Antonio Rivero.</p>
+      <p>These impecunious young people encountered many challenges in realizing their dream of establishing an institution whose motto was <span class="accent">"Patria, Scientia, et Virtus."</span> They named their school <span class="accent">Instituto de Manila</span>, and Apolinario de los Santos was elected as the first director.</p>
+    </div>
+
+    <div class="hymn-block">
+      <div class="hymn-title">🎵 &nbsp;The UM Hymn — U.M. Forever</div>
+      U.MI oh, U.M forever<br>
+      Alma mater, dear, we hail!<br>
+      We'll always wave your banner<br>
+      With the glorious U.M so dear<br>
+      As faithful sons, of dear U.M<br>
+      We will honor you forever,<br>
+      We'll cheer for you,<br>
+      Always love you<br>
+      Onward U.M ever hail!
+    </div>
+
+    <div class="card">
+      <h3>Key Milestones</h3>
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-year">1913</div><p>Instituto de Manila founded by five young visionaries in Intramuros.</p></div>
+        <div class="tl-item"><div class="tl-year">1919</div><p>College of Law formally opened; graduates top the Bar Examinations.</p></div>
+        <div class="tl-item"><div class="tl-year">1921</div><p>Re-incorporated as the <span class="accent">University of Manila</span> on November 3 under Act No. 1459.</p></div>
+        <div class="tl-item"><div class="tl-year">1938</div><p>Emmanuel Pelaez, future Vice-President of the Philippines, tops the Bar Examinations.</p></div>
+        <div class="tl-item"><div class="tl-year">1939</div><p>Nazi Germany invaded Poland, marking the beginning of World War II.</p></div>
+        <div class="tl-item"><div class="tl-year">1941</div><p>Philippines joined World War II after the suprised attacked in Pearl Harbor.</p></div>
+        <div class="tl-item"><div class="tl-year">1942</div><p>Empire of Japan took control the Manila; The University of Manila closed during occupation.</p></div>
+        <div class="tl-item"><div class="tl-year">1945</div><p>The University of Manila reopened after World War II, following the liberation of the Philippines by American forces.</p></div>
+        <div class="tl-item"><div class="tl-year">1959</div><p>Madame Helen de los Santos takes the presidency following Dr. Mariano's passing.</p></div>
+        <div class="tl-item"><div class="tl-year">1981</div><p>Dr. Virgilio de los Santos assumes presidency; receives Japan's Rising Sun Medal of Honor.</p></div>
+        <div class="tl-item"><div class="tl-year">1994</div><p>Four-year courses in Hotel &amp; Restaurant Management and <span class="accent">Computer Science</span> launched.</p></div>
+        <div class="tl-item"><div class="tl-year">2003</div><p>First university in the Philippines to offer a degree in the Japanese Language.</p></div>
+        <div class="tl-item"><div class="tl-year">2006</div><p>Dr. Emily Dodson De Leon elected President; becomes PACU's first Vice-President in 2007.</p></div>
+        <div class="tl-item"><div class="tl-year">2019</div><p>Total Lockdown in the Philippines; University of Manila adapts to the new normal of classes.</p></div>
+        <div class="tl-item"><div class="tl-year">2026</div><p>Atty. Dave De los Santos elected President.</p></div>
+      </div>
+    </div>
+
+    <!-- ══ CAMPUS LOCATION MAP ══ -->
+    <div class="map-card">
+      <div class="map-card-header">
+        <p class="section-label">📍 Campus Location</p>
+        <h3>University of Manila</h3>
+        <p class="map-address">546 Delos Santos St, 403, Manila, 1008 Metro Manila</p>
+      </div>
+      <iframe
+           src="https://www.google.com/maps?q=546+Delos+Santos+St,+403,+Manila,+1008+Metro+Manila&z=17&output=embed"
+           width="100%" height="340"
+           style="border:0; display:block;"
+          allowfullscreen=""
+           loading="lazy">
+</iframe>
+    </div>
+    <!-- ══ END CAMPUS LOCATION MAP ══ -->
+
+  </div>
+
+  <!-- ── MISSION ── -->
+  <div class="tab-panel" id="tab-mission">
+    <div class="card card-red">
+      <p class="section-label">Our Purpose</p>
+      <h2>UM Mission</h2>
+      <p><span class="accent">ACE</span> — to accomplish something with complete success.</p>
+    </div>
+    <div class="ace-grid">
+      <div class="ace-card">
+        <div class="ace-letter">A</div>
+        <h4>Anchor</h4>
+        <p>Anchor in the hearts of the youth the love of country, science, and virtue.</p>
+      </div>
+      <div class="ace-card">
+        <div class="ace-letter">C</div>
+        <h4>Create</h4>
+        <p>Create an atmosphere of academic excellence and competence.</p>
+      </div>
+      <div class="ace-card">
+        <div class="ace-letter">E</div>
+        <h4>Empower</h4>
+        <p>Empower the youth with modern scientific and technological skills in braving the challenges of the global society.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VISION ── -->
+  <div class="tab-panel" id="tab-vision">
+    <div class="card card-gold">
+      <p class="section-label">Our Future</p>
+      <h2>UM Vision</h2>
+    </div>
+    <div class="hero-quote">
+      <blockquote>"To impart to future generations the University of Manila trilogy of ideals: love of country, love of science, and love of virtue, in making the lives of others better, brighter, lighter and more liveable by making quality education accessible to all."</blockquote>
+      <div class="divider"></div>
+      <div class="trilogy">
+        <div class="trilogy-item">
+          <div class="tl-icon">🇵🇭</div>
+          <p>Patria<br>Love of Country</p>
+        </div>
+        <div class="trilogy-item">
+          <div class="tl-icon">🔬</div>
+          <p>Scientia<br>Love of Science</p>
+        </div>
+        <div class="trilogy-item">
+          <div class="tl-icon">⚖️</div>
+          <p>Virtus<br>Love of Virtue</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MOTTO ── -->
+  <div class="tab-panel" id="tab-motto">
+    <div class="card card-gold">
+      <p class="section-label">Our Motto</p>
+      <h2>UM Motto</h2>
+    </div>
+    <div class="hero-quote">
+      <blockquote style="font-size: clamp(1.5rem, 4vw, 2.5rem); font-weight: 700;">"To acquire knowledge and skills for the benefit of mankind."</blockquote>
+      <p style="color: rgba(255,255,255,0.5); font-size: 13px; letter-spacing: 2px; text-transform: uppercase;">Est. 1913 · University of Manila</p>
+    </div>
+  </div>
+
+  <!-- ── COMPUTER SCIENCE ── -->
+  <div class="tab-panel" id="tab-cs">
+    <div class="card card-red">
+      <p class="section-label">College of Computer Science</p>
+      <h2>Computer Science Department</h2>
+      <p>Welcome to the College of Computer Science and Information Technology of The University of Manila. Faculty members maintain active programs of research and publication in computer vision, programming languages, machine learning, databases, modeling and simulation, and the theory of computation.</p>
+      <p>We offer academic programs leading to the degree of <span class="accent">Bachelor of Science in Computer Science</span> and <span class="accent">Associate in Computer Technology</span>.</p>
+    </div>
+    <div class="card">
+      <h3>CS Mission</h3>
+      <p>Provide quality undergraduate and graduate education in both the theoretical and applied foundations of computer science and train students to effectively apply this education to solve real-world problems, amplifying their potential for lifelong high-quality careers and giving them a competitive advantage in the ever-changing and challenging global work environment of the 21st century.</p>
+    </div>
+    <div class="card card-gold">
+      <h3>CS Vision</h3>
+      <p>Build a strong research and teaching environment that responds swiftly to the challenges of the 21st century.</p>
+    </div>
+    <div class="card">
+      <h3>General Objectives</h3>
+      <p>To produce technological and scientifically empowered professionals, information technology and computer science experts whose breadth and depth of orientation, knowledge, and training are within global standards — committed to share their expertise with the various sectors of the academic community and the community at large, ever motivated by the UM trilogy of ideals.</p>
+      <div class="divider"></div>
+      <h3>Specific Objectives</h3>
+      <p>To equip students with the skills and competencies in information communications technology, its operation, language, and design. To prepare graduates with a solid foundation on the various languages, programs, and systems to enable them to perform with confidence the varied tasks expected of them in global organizations of the corporate world.</p>
+    </div>
+
+    <div class="card">
+      <p class="section-label">CS Department</p>
+      <h3>Events</h3>
+      <p style="margin-bottom: 0; font-size: 14px; color: rgba(255,255,255,0.5);">Hover over each photo to reveal the event name.</p>
+      <div class="events-grid">
+        <div class="event-card">
+          <img src="images/Acquiantance.jpg" alt="Acquiantance Party"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🎉 Acquiantance Party 2025</span>
+        </div>
+        <div class="event-card">
+          <img src="images2/16.jfif" alt="Sportsfest 2026"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🌲 Save Earth 2025</span>
+        </div>
+        <div class="event-card">
+          <img src="images2/77.jfif" alt="Sportsfest 2026"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🏆 CS Sportsfest 2025</span>
+        </div>
+        <div class="event-card">
+          <img src="images/Educational.jpg" alt="Laguna-Tagaytay Educational Tour"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🚌 Laguna-Tagaytay Educational Tour 2026</span>
+        </div>
+        <div class="event-card">
+          <img src="images/Sportsfest.jpg" alt="Sportsfest 2026"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🏆 UM Sportsfest 2026</span>
+        </div>
+        <div class="event-card">
+          <img src="images2/200.jfif" alt="Sportsfest 2026"
+               onerror="this.style.background='linear-gradient(135deg,#1a1f36,#2e3554)'; this.style.minHeight='180px';">
+          <span class="event-label">🎓 Farewell Party 2026</span>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROFESSORS ── -->
+  <div class="tab-panel" id="tab-professors">
+    <div class="card card-red">
+      <p class="section-label">Faculty</p>
+      <h2>Computer Science Professors</h2>
+    </div>
+    <div class="prof-grid">
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/marjorie.jfif" alt="Prof. Marjorie Borces" onerror="this.style.display='none'; this.parentElement.textContent='MB';"></div>
+        <div class="prof-name">Prof. Marjorie Borces</div>
+        <div class="prof-role">Adviser &amp; Professor</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/roch.jfif" alt="Prof. Rochelle Fallorina" onerror="this.style.display='none'; this.parentElement.textContent='RF';"></div>
+        <div class="prof-name">Prof. Rochelle Fallorina</div>
+        <div class="prof-role">Networking and Hardware Professor</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/plaza.jfif" alt="Prof. Rogelio Plaza" onerror="this.style.display='none'; this.parentElement.textContent='RP';"></div>
+        <div class="prof-name">Prof. Rogelio Plaza</div>
+        <div class="prof-role">Programming Professor</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/joselito.jfif" alt="Prof. Joselito Borces" onerror="this.style.display='none'; this.parentElement.textContent='JB';"></div>
+        <div class="prof-name">Prof. Joselito Borces</div>
+        <div class="prof-role">Game &amp; Computer Architecture Professor</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/ramos.jfif" alt="Prof. Ervin Ramos" onerror="this.style.display='none'; this.parentElement.textContent='ER';"></div>
+        <div class="prof-name">Prof. Ervin Ramos</div>
+        <div class="prof-role">Software Development Professor</div>
+      </div>
+      <div class="prof-card">
+        <div class="prof-avatar"><img src="images/stanley.jfif" alt="Prof. Stanley P. Verde" onerror="this.style.display='none'; this.parentElement.textContent='SV';"></div>
+        <div class="prof-name">Prof. Stanley P. Verde</div>
+        <div class="prof-role">Data Science Professor</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── OPERATING SYSTEMS ── -->
+  <div class="tab-panel" id="tab-os">
+    <div class="card card-red">
+      <p class="section-label">Course Topics</p>
+      <h2>Operating Systems</h2>
+    </div>
+    <div class="os-grid">
+      <div class="os-card">
+        <div class="os-header">
+          <div class="os-logo win"><img src="https://static.vecteezy.com/system/resources/thumbnails/020/975/574/small/window-10-logo-window-10-icon-transparent-free-png.png" alt="Windows"></div>
+          <div><h3>Windows</h3><span class="os-maker">Microsoft Corporation</span></div>
+        </div>
+        <div class="os-body">
+          <p>Windows OS is a family of operating systems developed by Microsoft. It provides a graphical user interface (GUI) which allows users to interact with the computer using visual elements like windows, icons, and menus.</p>
+          <ul class="version-list">
+            <li>Windows XP</li><li>Windows Vista</li><li>Windows 7</li>
+            <li>Windows 8 &amp; 8.1</li><li>Windows 10</li><li>Windows 11</li>
+          </ul>
+        </div>
+      </div>
+      <div class="os-card">
+        <div class="os-header">
+          <div class="os-logo mac"><img src="images/images-removebg-preview.png" alt="macOS"></div>
+          <div><h3>macOS</h3><span class="os-maker">Apple Inc.</span></div>
+        </div>
+        <div class="os-body">
+          <p>macOS is the operating system developed by Apple Inc. for its line of Mac computers. Known for its sleek design, stability, and ease of use, macOS provides a graphical user interface that allows users to interact through windows, icons, and menus.</p>
+          <ul class="version-list">
+            <li>Mac OS X 10.0–10.7</li><li>OS X 10.8–10.11</li><li>macOS 10.12–10.15</li>
+            <li>macOS 11 (Big Sur)</li><li>macOS 12 (Monterey)</li><li>macOS 13 (Ventura)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="os-grid">
+      <div class="os-card">
+        <div class="os-header">
+          <div class="os-logo win"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTJw7yIuraCY1v7LyKd4JaGmrrYBy6dSuJJQ&s" alt="Linux"></div>
+          <div><h3>Linux</h3><span class="os-maker">Linus Torvalds</span></div>
+        </div>
+        <div class="os-body">
+          <p>Linux is a free and open-source operating system. It acts as the bridge between your computer's hardware and the software you use (like apps and programs). Unlike Windows or macOS, Linux is built on a kernel (the core system) created by Linus Torvalds in 1991.</p>
+          <p>Linux doesn't come as just one version. Instead, it has many distributions (distros)—these are different versions of Linux with their own features, designs, and tools.</p>
+          <ul class="version-list">
+            <li><strong>UBUNTU</strong> (Ubuntu 20.04, Ubuntu 22.04, Ubuntu 24.04)</li>
+            <li><strong>DEBIAN</strong> (Debian 10, Debian 11, Debian 12)</li>
+            <li><strong>FEDORA</strong> (Fedora 38, Fedora 39, Fedora 40)</li>
+            <li><strong>RED HAT ENTERPRISE LINUX</strong> (RHEL 7, RHEL 8, RHEL 9)</li>
+            <li><strong>LINUX MINT</strong> (Mint 20, Mint 21, Mint 22)</li>
+            <li><strong>ARCH LINUX</strong> (Rolling Release - No fixed versions)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PROGRAMMING ACTIVITIES ── -->
+  <div class="tab-panel" id="tab-activities">
+    <div class="card card-red">
+      <p class="section-label">Student Work</p>
+      <h2>Programming Activities</h2>
+      <p style="margin-bottom:0;">Browse source code and interact with each activity's live demo below.</p>
+    </div>
+
+    <div class="activity-nav" id="actNav">
+      <button class="activity-pill active" data-act="helloworld">Hello World</button>
+      <button class="activity-pill" data-act="alertwindow">Alert Window</button>
+      <button class="activity-pill" data-act="namepop">Name Pop-up</button>
+      <button class="activity-pill" data-act="namegreeting">Name Greeting</button>
+      <button class="activity-pill" data-act="birthday">Birthday Greeter</button>
+      <button class="activity-pill" data-act="alcohol">Alcohol Check</button>
+      <button class="activity-pill" data-act="timer">Countdown Timer</button>
+      <button class="activity-pill" data-act="add">Addition</button>
+      <button class="activity-pill" data-act="sub">Subtraction</button>
+      <button class="activity-pill" data-act="mul">Multiplication</button>
+      <button class="activity-pill" data-act="div">Division</button>
+      <button class="activity-pill" data-act="ifelse">If-Else Example</button>
+      <button class="activity-pill" data-act="currentdate">Current Date</button>
+      <button class="activity-pill" data-act="calculator">Calculator</button>
+      <button class="activity-pill" data-act="loginreg">Login &amp; Register</button>
+    </div>
+
+    <!-- HELLO WORLD -->
+    <div class="activity-panel active" id="act-helloworld">
+      <div class="activity-meta"><span class="activity-title">Hello World</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Click the button to trigger an alert that displays "Hello, World!"</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">HelloWorld.html</span></div>
+          <div class="code-body"><pre><span class="tok-tag">&lt;style&gt;</span>
+  <span class="tok-prop">body</span> {
+    <span class="tok-prop">background</span>: <span class="tok-val">#070000</span>;
+    <span class="tok-prop">display</span>: <span class="tok-val">flex</span>;
+    <span class="tok-prop">justify-content</span>: <span class="tok-val">center</span>;
+    <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>;
+    <span class="tok-prop">height</span>: <span class="tok-val">100vh</span>;
+  }
+  <span class="tok-prop">.HelloWorld</span> {
+    <span class="tok-prop">background</span>: <span class="tok-val">white</span>;
+    <span class="tok-prop">padding</span>: <span class="tok-val">50px</span>;
+    <span class="tok-prop">border-radius</span>: <span class="tok-val">8px</span>;
+  }
+<span class="tok-tag">&lt;/style&gt;</span>
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-str">"HelloWorld"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;button</span> <span class="tok-attr">onclick</span><span class="tok-punct">=</span><span class="tok-str">"alert('Hello, World!')"</span><span class="tok-tag">&gt;</span>
+    Click Me!
+  <span class="tok-tag">&lt;/button&gt;</span>
+<span class="tok-tag">&lt;/div&gt;</span></pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><div class="hw-wrap"><div class="hw-inner"><button class="df-btn" onclick="alert('Hello, World!')">Click Me!</button></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALERT WINDOW -->
+    <div class="activity-panel" id="act-alertwindow">
+      <div class="activity-meta"><span class="activity-title">Alert Window</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Click the button to trigger a custom alert that says "Beware Joshua Jaculba!" — styled with a dark card background.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">AlertWindow.html</span></div>
+          <div class="code-body"><pre><span class="tok-tag">&lt;style&gt;</span>
+  <span class="tok-prop">body</span> {
+    <span class="tok-prop">background</span>: <span class="tok-val">#e9e7e7</span>;
+    <span class="tok-prop">display</span>: <span class="tok-val">flex</span>;
+    <span class="tok-prop">justify-content</span>: <span class="tok-val">center</span>;
+    <span class="tok-prop">align-items</span>: <span class="tok-val">center</span>;
+    <span class="tok-prop">height</span>: <span class="tok-val">100vh</span>;
+  }
+  <span class="tok-prop">.HelloWorld</span> {
+    <span class="tok-prop">background</span>: <span class="tok-val">rgb(34, 28, 28)</span>;
+    <span class="tok-prop">padding</span>: <span class="tok-val">50px</span>;
+    <span class="tok-prop">border-radius</span>: <span class="tok-val">8px</span>;
+    <span class="tok-prop">box-shadow</span>: <span class="tok-val">0 0 10px rgba(0,0,0,0.1)</span>;
+  }
+<span class="tok-tag">&lt;/style&gt;</span>
+<span class="tok-tag">&lt;div</span> <span class="tok-attr">class</span><span class="tok-punct">=</span><span class="tok-str">"HelloWorld"</span><span class="tok-tag">&gt;</span>
+  <span class="tok-tag">&lt;button</span> <span class="tok-attr">onclick</span><span class="tok-punct">=</span><span class="tok-str">"alert('Beware Joshua Jaculba!')"</span><span class="tok-tag">&gt;</span>
+    Click Me!
+  <span class="tok-tag">&lt;/button&gt;</span>
+<span class="tok-tag">&lt;/div&gt;</span></pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form">
+            <div class="hw-wrap" style="background:#e9e7e7;">
+              <div style="background:rgb(34,28,28);padding:30px 40px;border-radius:8px;box-shadow:0 0 10px rgba(0,0,0,0.3);">
+                <button class="df-btn" onclick="alert('Beware Joshua Jaculba!')">Click Me!</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAME POP-UP -->
+    <div class="activity-panel" id="act-namepop">
+      <div class="activity-meta"><span class="activity-title">Name Pop-up</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Enter a name and click RUN — an alert pops up displaying "Your name is [name]".</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">NamePop.html</span></div>
+          <div class="code-body"><pre><span class="tok-tag">&lt;input</span> <span class="tok-attr">type</span><span class="tok-punct">=</span><span class="tok-str">"text"</span> <span class="tok-attr">id</span><span class="tok-punct">=</span><span class="tok-str">"name"</span> <span class="tok-attr">placeholder</span><span class="tok-punct">=</span><span class="tok-str">"Name"</span><span class="tok-tag">&gt;</span>
+<span class="tok-tag">&lt;button</span> <span class="tok-attr">onclick</span><span class="tok-punct">=</span><span class="tok-str">"RUN()"</span><span class="tok-tag">&gt;</span>RUN<span class="tok-tag">&lt;/button&gt;</span>
+<span class="tok-tag">&lt;script&gt;</span>
+<span class="tok-kw">function</span> <span class="tok-fn">RUN</span>() {
+  <span class="tok-kw">let</span> name <span class="tok-punct">=</span> document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"name"</span>).value;
+  <span class="tok-fn">alert</span>(<span class="tok-str">"Your name is "</span> <span class="tok-punct">+</span> name);
+}
+<span class="tok-tag">&lt;/script&gt;</span></pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>Enter your name:</label><input type="text" id="np-name" placeholder="Name"><button class="df-btn" onclick="var v=document.getElementById('np-name').value;alert('Your name is '+v)">RUN</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAME GREETING -->
+    <div class="activity-panel" id="act-namegreeting">
+      <div class="activity-meta"><span class="activity-title">Name Greeting</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Enter a name and click RUN — an alert pops up saying "Hello [name]! Nice to meet you!"</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">NameGreeting.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">RUN</span>() {
+  <span class="tok-kw">let</span> name <span class="tok-punct">=</span> document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"name"</span>).value;
+  <span class="tok-fn">alert</span>(<span class="tok-str">"Hello "</span> <span class="tok-punct">+</span> name <span class="tok-punct">+</span> <span class="tok-str">"! Nice to meet you!"</span>);
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>Enter your name:</label><input type="text" id="ng-name" placeholder="Name"><button class="df-btn" onclick="var v=document.getElementById('ng-name').value;alert('Hello '+v+'! Nice to meet you!')">RUN</button></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ADDITION -->
+    <div class="activity-panel" id="act-add">
+      <div class="activity-meta"><span class="activity-title">Addition</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Enter two numbers and click Add to compute their sum using JavaScript's Number() conversion.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">add.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">add</span>() {
+  <span class="tok-kw">let</span> n1 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num1"</span>).value);
+  <span class="tok-kw">let</span> n2 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num2"</span>).value);
+  document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"result"</span>).value <span class="tok-punct">=</span> n1 <span class="tok-punct">+</span> n2;
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>First number:</label><input type="number" id="add-n1" placeholder="First number"><label>Second number:</label><input type="number" id="add-n2" placeholder="Second number"><button class="df-btn" onclick="addCalc()">Add</button><div class="result-box" id="add-result">Result will appear here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUBTRACTION -->
+    <div class="activity-panel" id="act-sub">
+      <div class="activity-meta"><span class="activity-title">Subtraction</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Subtracts the second number from the first and displays the result.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">sub.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">sub</span>() {
+  <span class="tok-kw">let</span> n1 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num1"</span>).value);
+  <span class="tok-kw">let</span> n2 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num2"</span>).value);
+  document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"result"</span>).value <span class="tok-punct">=</span> n1 <span class="tok-punct">-</span> n2;
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>First number:</label><input type="number" id="sub-n1" placeholder="First number"><label>Second number:</label><input type="number" id="sub-n2" placeholder="Second number"><button class="df-btn" onclick="subCalc()">Subtract</button><div class="result-box" id="sub-result">Result will appear here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MULTIPLICATION -->
+    <div class="activity-panel" id="act-mul">
+      <div class="activity-meta"><span class="activity-title">Multiplication</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Multiplies two numbers and displays the product.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">mul.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">mul</span>() {
+  <span class="tok-kw">let</span> n1 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num1"</span>).value);
+  <span class="tok-kw">let</span> n2 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num2"</span>).value);
+  document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"result"</span>).value <span class="tok-punct">=</span> n1 <span class="tok-punct">*</span> n2;
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>First number:</label><input type="number" id="mul-n1" placeholder="First number"><label>Second number:</label><input type="number" id="mul-n2" placeholder="Second number"><button class="df-btn" onclick="mulCalc()">Multiply</button><div class="result-box" id="mul-result">Result will appear here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DIVISION -->
+    <div class="activity-panel" id="act-div">
+      <div class="activity-meta"><span class="activity-title">Division</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Divides two numbers with a divide-by-zero guard — shows "Error" if divisor is 0.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">div.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">div</span>() {
+  <span class="tok-kw">let</span> n1 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num1"</span>).value);
+  <span class="tok-kw">let</span> n2 <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"num2"</span>).value);
+  <span class="tok-kw">if</span> (n2 <span class="tok-punct">===</span> <span class="tok-num">0</span>) { document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"result"</span>).value <span class="tok-punct">=</span> <span class="tok-str">"Error"</span>; <span class="tok-kw">return</span>; }
+  document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"result"</span>).value <span class="tok-punct">=</span> n1 <span class="tok-punct">/</span> n2;
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>First number:</label><input type="number" id="div-n1" placeholder="First number"><label>Second number:</label><input type="number" id="div-n2" placeholder="Second number"><button class="df-btn" onclick="divCalc()">Divide</button><div class="result-box" id="div-result">Result will appear here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALCOHOL -->
+    <div class="activity-panel" id="act-alcohol">
+      <div class="activity-meta"><span class="activity-title">Alcohol Eligibility Check</span><span class="activity-badge">HTML · JS · Conditionals</span></div>
+      <p class="activity-desc">Enter your age — checks if you are 18+ and eligible to purchase alcohol.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">Alcohol.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">checkAlcohol</span>() {
+  <span class="tok-kw">let</span> age <span class="tok-punct">=</span> <span class="tok-fn">Number</span>(document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"age"</span>).value);
+  <span class="tok-kw">if</span> (age <span class="tok-punct">&gt;=</span> <span class="tok-num">18</span>) {
+    <span class="tok-fn">alert</span>(<span class="tok-str">"You are eligible to purchase alcohol."</span>);
+  } <span class="tok-kw">else</span> {
+    <span class="tok-fn">alert</span>(<span class="tok-str">"You are not eligible to purchase alcohol."</span>);
+  }
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>Enter your age:</label><input type="number" id="alc-age" placeholder="Age" min="0" max="120"><button class="df-btn" onclick="alcoholCheck()">Check Alcohol Eligibility</button><div class="result-box" id="alc-result">Result will appear here</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BIRTHDAY -->
+    <div class="activity-panel" id="act-birthday">
+      <div class="activity-meta"><span class="activity-title">Birthday Greeter</span><span class="activity-badge">HTML · JS</span></div>
+      <p class="activity-desc">Enter a name and send a happy birthday greeting.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">Birthday.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">Birthday</span>() {
+  <span class="tok-kw">let</span> name <span class="tok-punct">=</span> document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"name"</span>).value;
+  <span class="tok-fn">alert</span>(<span class="tok-str">"Happy Birthday "</span> <span class="tok-punct">+</span> name <span class="tok-punct">+</span> <span class="tok-str">"! Wishing you a wonderful year ahead."</span>);
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form"><label>Enter a name:</label><input type="text" id="bday-name" placeholder="Name"><button class="df-btn" onclick="birthdayGreet()">Let's see!</button><div class="result-box ok" id="bday-result" style="display:none"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TIMER -->
+    <div class="activity-panel" id="act-timer">
+      <div class="activity-meta"><span class="activity-title">Countdown Timer</span><span class="activity-badge">HTML · JS · setInterval</span></div>
+      <p class="activity-desc">A 60-second countdown using setInterval(). Fires an alert when time runs out.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">timer.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">var</span> timeLeft <span class="tok-punct">=</span> <span class="tok-num">60</span>;
+<span class="tok-kw">var</span> timerId;
+<span class="tok-kw">function</span> <span class="tok-fn">startTimer</span>() {
+  timerId <span class="tok-punct">=</span> <span class="tok-fn">setInterval</span>(countdown, <span class="tok-num">1000</span>);
+}
+<span class="tok-kw">function</span> <span class="tok-fn">countdown</span>() {
+  <span class="tok-kw">if</span> (timeLeft <span class="tok-punct">==</span> <span class="tok-num">0</span>) {
+    <span class="tok-fn">clearInterval</span>(timerId);
+    <span class="tok-fn">alert</span>(<span class="tok-str">"Time's up!"</span>);
+  } <span class="tok-kw">else</span> {
+    document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"timer"</span>).value <span class="tok-punct">=</span> timeLeft;
+    timeLeft<span class="tok-punct">--</span>;
+  }
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form">
+            <div class="timer-display" id="timer-display">60</div>
+            <button class="df-btn" id="timer-btn" onclick="timerStart()">▶ Start Timer</button>
+            <button class="df-btn df-btn-sec" onclick="timerReset()" style="margin-top:8px">↺ Reset</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IF-ELSE -->
+    <div class="activity-panel" id="act-ifelse">
+      <div class="activity-meta"><span class="activity-title">If-Else Example</span><span class="activity-badge">HTML · JS · Conditionals</span></div>
+      <p class="activity-desc">Enter a name and click RUN. If the name is "Joshua" it shows a special welcome message; otherwise a generic greeting.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">Ifelse.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">RUN</span>() {
+  <span class="tok-kw">let</span> name <span class="tok-punct">=</span> document.<span class="tok-fn">getElementById</span>(<span class="tok-str">"name"</span>).value;
+  <span class="tok-kw">if</span> (name <span class="tok-punct">===</span> <span class="tok-str">"Joshua"</span>) {
+    <span class="tok-fn">alert</span>(<span class="tok-str">"Hello Joshua! Welcome back!"</span>);
+  } <span class="tok-kw">else</span> {
+    <span class="tok-fn">alert</span>(<span class="tok-str">"Hello "</span> <span class="tok-punct">+</span> name <span class="tok-punct">+</span> <span class="tok-str">"! Nice to meet you!"</span>);
+  }
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form">
+            <label>Enter a name (try "Joshua"):</label>
+            <input type="text" id="ie-name" placeholder="Name">
+            <button class="df-btn" onclick="ifelseRun()">RUN</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CURRENT DATE -->
+    <div class="activity-panel" id="act-currentdate">
+      <div class="activity-meta"><span class="activity-title">Current Date</span><span class="activity-badge">HTML · JS · Date</span></div>
+      <p class="activity-desc">Click the button to display today's date using JavaScript's built-in <code style="background:rgba(255,255,255,0.1);padding:1px 6px;border-radius:4px;font-family:monospace;">Date</code> object.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">currentdate.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">showDate</span>() {
+  <span class="tok-kw">let</span> currentDate <span class="tok-punct">=</span> <span class="tok-kw">new</span> <span class="tok-fn">Date</span>();
+  <span class="tok-fn">alert</span>(<span class="tok-str">"Today is: "</span> <span class="tok-punct">+</span>
+    currentDate.<span class="tok-fn">toDateString</span>());
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="demo-form">
+            <div class="hw-wrap">
+              <div class="hw-inner">
+                <button class="df-btn" onclick="cdShowDate()">Show Current Date</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="activity-panel" id="act-calculator">
+      <div class="activity-meta"><span class="activity-title">Calculator</span><span class="activity-badge">HTML · CSS · JS</span></div>
+      <p class="activity-desc">A full calculator with +, −, ×, ÷ operations. Uses eval() with Infinity and error guards.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">cal.js</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">calculate</span>() {
+  <span class="tok-kw">try</span> {
+    <span class="tok-kw">let</span> result <span class="tok-punct">=</span> <span class="tok-fn">eval</span>(expression);
+    display.value <span class="tok-punct">=</span> result;
+    expression <span class="tok-punct">=</span> result.<span class="tok-fn">toString</span>();
+  } <span class="tok-kw">catch</span> (e) { display.value <span class="tok-punct">=</span> <span class="tok-str">'Error'</span>; expression <span class="tok-punct">=</span> <span class="tok-str">''</span>; }
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div class="cal-demo">
+            <div class="cal-wrap">
+              <input class="cal-display" id="cal-display" readonly placeholder="0">
+              <div class="cal-keys">
+                <button class="cal-btn op" onclick="calAppend('+')">+</button>
+                <button class="cal-btn" onclick="calAppend('7')">7</button>
+                <button class="cal-btn" onclick="calAppend('8')">8</button>
+                <button class="cal-btn" onclick="calAppend('9')">9</button>
+                <button class="cal-btn op" onclick="calAppend('-')">−</button>
+                <button class="cal-btn" onclick="calAppend('4')">4</button>
+                <button class="cal-btn" onclick="calAppend('5')">5</button>
+                <button class="cal-btn" onclick="calAppend('6')">6</button>
+                <button class="cal-btn op" onclick="calAppend('*')">×</button>
+                <button class="cal-btn" onclick="calAppend('1')">1</button>
+                <button class="cal-btn" onclick="calAppend('2')">2</button>
+                <button class="cal-btn" onclick="calAppend('3')">3</button>
+                <button class="cal-btn op" onclick="calAppend('/')">/</button>
+                <button class="cal-btn" onclick="calAppend('0')">0</button>
+                <button class="cal-btn" onclick="calAppend('.')">.</button>
+                <button class="cal-btn" onclick="calCalculate()" style="background:#C0392B">=</button>
+                <button class="cal-btn op" onclick="calClear()">C</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOGIN & REGISTER -->
+    <div class="activity-panel" id="act-loginreg">
+      <div class="activity-meta"><span class="activity-title">Login &amp; Register</span><span class="activity-badge">HTML · JS · localStorage</span></div>
+      <p class="activity-desc">A full authentication flow using in-memory storage. Register a new account, then log in with your credentials.</p>
+      <div class="activity-workspace">
+        <div class="code-pane"><div class="code-pane-header"><div class="traffic-lights"><span class="tl-r"></span><span class="tl-y"></span><span class="tl-g"></span></div><span class="file-label">register.html / login.html</span></div>
+          <div class="code-body"><pre><span class="tok-kw">function</span> <span class="tok-fn">register</span>() {
+  <span class="tok-kw">if</span> (pass <span class="tok-punct">!==</span> conf) { <span class="tok-fn">alert</span>(<span class="tok-str">'Passwords do not match'</span>); <span class="tok-kw">return</span>; }
+  localStorage.<span class="tok-fn">setItem</span>(user, <span class="tok-fn">JSON.stringify</span>({name,user,pass}));
+  <span class="tok-fn">alert</span>(<span class="tok-str">'Registration successful'</span>);
+}</pre></div></div>
+        <div class="demo-pane"><div class="demo-pane-header"><div class="demo-indicator"></div><span>Live Demo</span></div>
+          <div style="background:#fff;min-height:280px;">
+            <div class="auth-tabs">
+              <button class="auth-tab active" onclick="authSwitchTab('register',this)">Register</button>
+              <button class="auth-tab" onclick="authSwitchTab('login',this)">Login</button>
+            </div>
+            <div class="auth-screen active" id="auth-register">
+              <div class="auth-form-title">Create Account</div>
+              <input class="auth-input" id="reg-name" placeholder="Full Name">
+              <input class="auth-input" id="reg-user" placeholder="Username">
+              <input class="auth-input" type="password" id="reg-pass" placeholder="Password">
+              <input class="auth-input" type="password" id="reg-conf" placeholder="Confirm Password">
+              <button class="auth-btn" onclick="authRegister()">Register</button>
+              <div class="auth-msg" id="reg-msg"></div>
+            </div>
+            <div class="auth-screen" id="auth-login">
+              <div class="auth-form-title">Login</div>
+              <input class="auth-input" id="log-user" placeholder="Username">
+              <input class="auth-input" type="password" id="log-pass" placeholder="Password">
+              <button class="auth-btn" onclick="authLogin()">Login</button>
+              <div class="auth-msg" id="log-msg"></div>
+            </div>
+            <div class="auth-success" id="auth-success">
+              <div style="font-size:2.5rem;margin-bottom:10px">✅</div>
+              <h2 id="auth-success-name">Hello, Login Successful!</h2>
+              <p>You are now logged in.</p>
+              <button class="logout-btn" onclick="authLogout()">Logout</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end activities -->
+
+  <!-- ── WEBSITE DEVELOPER ── -->
+  <div class="tab-panel" id="tab-developer">
+    <div class="card card-red">
+      <p class="section-label">Joshua Nombrado Jaculba</p>
+      <h2>Website Developer</h2>
+    </div>
+    <div class="card">
+      <div class="dev-hero">
+        <img src="images/joshua.jfif" alt="Developer Photo" class="dev-photo">
+        <h3>Joshua Nombrado Jaculba</h3>
+        <p>3rd Year — Bachelor of Science in Computer Science</p>
+        <p>This website was developed as part of the University of Manila's Computer Science program.</p>
+
+        <div style="display:flex;justify-content:center;gap:15px;flex-wrap:wrap;margin-top:20px;text-align:center;">
+          <a href="https://docs.google.com/document/d/1QsjSDhgRfBEBmtvsP_XBFAK9foWl4c2hP6kFFd3KJD8/edit?usp=sharing"
+             style="color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:10px 18px;border-radius:8px;font-weight:500;transition:all 0.3s ease;"
+             onmouseover="this.style.backgroundColor='var(--gold)';this.style.color='#000';"
+             onmouseout="this.style.backgroundColor='transparent';this.style.color='var(--gold)';">
+            📄 Open my document
+          </a>
+          <a href="https://github.com/joshuajaculba"
+             style="color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:10px 18px;border-radius:8px;font-weight:500;transition:all 0.3s ease;"
+             onmouseover="this.style.backgroundColor='var(--gold)';this.style.color='#000';"
+             onmouseout="this.style.backgroundColor='transparent';this.style.color='var(--gold)';">
+            💻 System Collections
+          </a>
+        </div>
+
+        <div class="divider"></div>
+
+        <span class="family-section-label">👨‍👩‍👧‍👦 &nbsp;My Family</span>
+        <div class="family-photo-wrap">
+          <img src="images/family.jpg" alt="Family Photo" class="family-photo" onerror="this.style.display='none';">
+        </div>
+
+        <div class="divider"></div>
+
+        <span class="friends-section-label">🤝 &nbsp;My Friends</span>
+        <div class="friends-grid">
+<img src="images2/1.jpg" alt="Friend 1" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/2.jpg" alt="Friend 2" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/3.jpg" alt="Friend 3" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/4.jpg" alt="Friend 4" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/5.jpg" alt="Friend 5" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/6.jpg" alt="Friend 6" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/7.jpg" alt="Friend 7" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/8.jpg" alt="Friend 8" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/9.jpg" alt="Friend 9" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/10.jpg" alt="Friend 10" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/11.jpg" alt="Friend 11" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/12.jpg" alt="Friend 12" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/13.jpg" alt="Friend 13" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/14.jpg" alt="Friend 14" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/15.jpg" alt="Friend 15" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/16.jfif" alt="Friend 16" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/17.jfif" alt="Friend 17" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/18.jfif" alt="Friend 18" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/19.jfif" alt="Friend 19" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/20.jfif" alt="Friend 20" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/21.jfif" alt="Friend 21" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/22.jfif" alt="Friend 22" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/23.jfif" alt="Friend 23" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/24.jfif" alt="Friend 24" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/25.jfif" alt="Friend 25" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/26.jfif" alt="Friend 26" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/27.jfif" alt="Friend 27" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/28.jfif" alt="Friend 28" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/29.jfif" alt="Friend 29" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/30.jfif" alt="Friend 30" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/31.jfif" alt="Friend 31" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/32.jfif" alt="Friend 32" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/33.jfif" alt="Friend 33" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/34.jfif" alt="Friend 34" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/35.jfif" alt="Friend 35" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/36.jfif" alt="Friend 36" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/37.jfif" alt="Friend 37" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/38.jfif" alt="Friend 38" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/39.jfif" alt="Friend 39" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/40.jfif" alt="Friend 40" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/41.jfif" alt="Friend 41" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/42.jfif" alt="Friend 42" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/43.jfif" alt="Friend 43" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/44.jfif" alt="Friend 44" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/45.jfif" alt="Friend 45" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/46.jfif" alt="Friend 46" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/47.jfif" alt="Friend 47" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/48.jfif" alt="Friend 48" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/49.jfif" alt="Friend 49" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/50.jfif" alt="Friend 50" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/51.jfif" alt="Friend 51" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/52.jfif" alt="Friend 52" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/53.jfif" alt="Friend 53" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/54.jfif" alt="Friend 54" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/55.jfif" alt="Friend 55" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/56.jfif" alt="Friend 56" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/57.jfif" alt="Friend 57" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/58.jfif" alt="Friend 58" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/59.jfif" alt="Friend 59" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/60.jfif" alt="Friend 60" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/61.jfif" alt="Friend 61" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/62.jfif" alt="Friend 62" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/63.jfif" alt="Friend 63" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/64.jfif" alt="Friend 64" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/65.jfif" alt="Friend 65" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/66.jfif" alt="Friend 66" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/67.jfif" alt="Friend 67" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/68.jfif" alt="Friend 68" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/69.jfif" alt="Friend 69" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/70.jfif" alt="Friend 70" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/71.jfif" alt="Friend 71" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/72.jfif" alt="Friend 72" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/73.jfif" alt="Friend 73" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/74.jfif" alt="Friend 74" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/75.jfif" alt="Friend 75" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/76.jfif" alt="Friend 76" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/77.jfif" alt="Friend 77" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/78.jfif" alt="Friend 78" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/79.jfif" alt="Friend 79" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/80.jfif" alt="Friend 80" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/81.jfif" alt="Friend 81" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/82.jfif" alt="Friend 82" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/83.jfif" alt="Friend 83" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/84.jfif" alt="Friend 84" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/85.jfif" alt="Friend 85" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/86.jfif" alt="Friend 86" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/87.jfif" alt="Friend 87" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/88.jfif" alt="Friend 88" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/89.jfif" alt="Friend 89" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/90.jfif" alt="Friend 90" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/91.jfif" alt="Friend 91" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/92.jfif" alt="Friend 92" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/93.jfif" alt="Friend 93" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/94.jfif" alt="Friend 94" class="friend-photo" onerror="this.style.display='none';">
+<img src="images2/95.jfif" alt="Friend 95" class="friend-photo" onerror="this.style.display='none';">
+<img src="images/96.jfif" alt="Friend 96" class="friend-photo" onerror="this.style.display='none';">
+<img src="images/97.jfif" alt="Friend 97" class="friend-photo" onerror="this.style.display='none';">
+<img src="images/98.jfif" alt="Friend 98" class="friend-photo" onerror="this.style.display='none';">
+<img src="images/99.jfif" alt="Friend 99" class="friend-photo" onerror="this.style.display='none';">
+<img src="images/100.jfif" alt="Friend 100" class="friend-photo" onerror="this.style.display='none';">
+          <img src="images/101.jfif" alt="Friend 101" class="friend-photo" onerror="this.style.display='none';">
+          <img src="images/102.jfif" alt="Friend 102" class="friend-photo" onerror="this.style.display='none';">
+          <img src="images/103.jfif" alt="Friend 103" class="friend-photo" onerror="this.style.display='none';">
+          <img src="images/104.jfif" alt="Friend 104" class="friend-photo" onerror="this.style.display='none';">
+          <img src="images/105.jfif" alt="Friend 105" class="friend-photo" onerror="this.style.display='none';">
+
+          
+        </div>
+
+        <div class="divider"></div>
+        <p style="font-size:13px;color:rgba(255,255,255,0.45);letter-spacing:1px;">University of Manila · College of Computer Science</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end .tabs-wrapper -->
+
+<script>
+  /* ── MAIN TAB SWITCHER ── */
+  document.getElementById('mainNav').addEventListener('click', function(e) {
+    var b = e.target.closest('.tab-btn');
+    if (!b) return;
+    document.querySelectorAll('.tab-btn').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.tab-panel').forEach(function(x){ x.classList.remove('active'); });
+    b.classList.add('active');
+    document.getElementById('tab-' + b.dataset.tab).classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ── ACTIVITY PILL SWITCHER ── */
+  document.getElementById('actNav').addEventListener('click', function(e) {
+    var p = e.target.closest('.activity-pill');
+    if (!p) return;
+    document.querySelectorAll('.activity-pill').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.activity-panel').forEach(function(x){ x.classList.remove('active'); });
+    p.classList.add('active');
+    document.getElementById('act-' + p.dataset.act).classList.add('active');
+  });
+
+  /* ── MATH DEMOS ── */
+  function addCalc() {
+    var n1 = Number(document.getElementById('add-n1').value);
+    var n2 = Number(document.getElementById('add-n2').value);
+    var el = document.getElementById('add-result');
+    el.textContent = n1 + ' + ' + n2 + ' = ' + (n1 + n2);
+    el.className = 'result-box ok';
+  }
+  function subCalc() {
+    var n1 = Number(document.getElementById('sub-n1').value);
+    var n2 = Number(document.getElementById('sub-n2').value);
+    var el = document.getElementById('sub-result');
+    el.textContent = n1 + ' − ' + n2 + ' = ' + (n1 - n2);
+    el.className = 'result-box ok';
+  }
+  function mulCalc() {
+    var n1 = Number(document.getElementById('mul-n1').value);
+    var n2 = Number(document.getElementById('mul-n2').value);
+    var el = document.getElementById('mul-result');
+    el.textContent = n1 + ' × ' + n2 + ' = ' + (n1 * n2);
+    el.className = 'result-box ok';
+  }
+  function divCalc() {
+    var n1 = Number(document.getElementById('div-n1').value);
+    var n2 = Number(document.getElementById('div-n2').value);
+    var el = document.getElementById('div-result');
+    if (n2 === 0) { el.textContent = 'Error: Cannot divide by zero'; el.className = 'result-box err'; return; }
+    el.textContent = n1 + ' ÷ ' + n2 + ' = ' + (n1 / n2);
+    el.className = 'result-box ok';
+  }
+  function alcoholCheck() {
+    var a = Number(document.getElementById('alc-age').value);
+    var el = document.getElementById('alc-result');
+    if (!a && a !== 0) { el.textContent = 'Please enter a valid age.'; el.className = 'result-box err'; return; }
+    if (a >= 18) { el.textContent = '✓ SHOT NA TAYO!.'; el.className = 'result-box ok'; }
+    else { el.textContent = '✗ You are NOT eligible to purchase alcohol.'; el.className = 'result-box err'; }
+  }
+  function birthdayGreet() {
+    var n = document.getElementById('bday-name').value || 'Friend';
+    var el = document.getElementById('bday-result');
+    el.textContent = '🎂 Happy Birthday ' + n + '! Wishing you a wonderful year ahead.';
+    el.style.display = 'flex';
+  }
+
+  /* ── IF-ELSE DEMO ── */
+  function ifelseRun() {
+    var name = document.getElementById('ie-name').value;
+    if (name === 'Joshua') {
+      alert('Hello Joshua! Welcome back!');
+    } else {
+      alert('Hello ' + name + '! Nice to meet you!');
+    }
+  }
+
+  /* ── CURRENT DATE DEMO ── */
+  function cdShowDate() {
+    var currentDate = new Date();
+    alert('Today is: ' + currentDate.toDateString());
+  }
+
+  /* ── TIMER ── */
+  var timerLeft = 60, timerId = null, timerRunning = false;
+  function timerStart() {
+    if (timerRunning) return;
+    timerRunning = true;
+    var btn = document.getElementById('timer-btn');
+    btn.disabled = true; btn.textContent = '⏱ Running...';
+    timerId = setInterval(function() {
+      if (timerLeft <= 0) {
+        clearInterval(timerId); timerRunning = false;
+        document.getElementById('timer-display').textContent = '0';
+        document.getElementById('timer-display').className = 'timer-display';
+        btn.disabled = false; btn.textContent = '▶ Start Timer';
+        alert("Time's up!"); return;
+      }
+      timerLeft--;
+      document.getElementById('timer-display').textContent = timerLeft;
+      document.getElementById('timer-display').className = 'timer-display running';
+    }, 1000);
+  }
+  function timerReset() {
+    clearInterval(timerId); timerRunning = false; timerLeft = 60;
+    document.getElementById('timer-display').textContent = '60';
+    document.getElementById('timer-display').className = 'timer-display';
+    var btn = document.getElementById('timer-btn');
+    btn.disabled = false; btn.textContent = '▶ Start Timer';
+  }
+
+  /* ── CALCULATOR ── */
+  var calExpr = '';
+  function calAppend(v) {
+    var d = document.getElementById('cal-display');
+    if ('0123456789.'.includes(v)) { d.value += v; }
+    calExpr += v;
+    if ('+-*/'.includes(v)) { d.value = ''; }
+  }
+  function calClear() { document.getElementById('cal-display').value = ''; calExpr = ''; }
+  function calCalculate() {
+    var d = document.getElementById('cal-display');
+    try { var r = eval(calExpr); d.value = r; calExpr = r.toString(); }
+    catch(e) { d.value = 'Error'; calExpr = ''; }
+    if (d.value === 'Infinity' || d.value === '-Infinity') { d.value = 'Error'; calExpr = ''; }
+  }
+
+  /* ── AUTH (in-memory) ── */
+  var authUsers = {}, authLoggedInUser = null;
+  function authSwitchTab(tab, btn) {
+    document.querySelectorAll('.auth-tab').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.auth-screen').forEach(function(x){ x.classList.remove('active'); });
+    btn.classList.add('active');
+    document.getElementById('auth-' + tab).classList.add('active');
+    document.getElementById('auth-success').classList.remove('active');
+    document.getElementById('reg-msg').className = 'auth-msg';
+    document.getElementById('log-msg').className = 'auth-msg';
+  }
+  function authRegister() {
+    var name = document.getElementById('reg-name').value.trim();
+    var user = document.getElementById('reg-user').value.trim();
+    var pass = document.getElementById('reg-pass').value;
+    var conf = document.getElementById('reg-conf').value;
+    var msg  = document.getElementById('reg-msg');
+    if (!name || !user || !pass) { msg.textContent = 'Please fill in all fields.'; msg.className = 'auth-msg err'; return; }
+    if (pass !== conf) { msg.textContent = 'Passwords do not match.'; msg.className = 'auth-msg err'; return; }
+    authUsers[user] = { name: name, username: user, password: pass };
+    msg.textContent = 'Registration successful! You can now log in.';
+    msg.className = 'auth-msg ok';
+    document.getElementById('reg-name').value = '';
+    document.getElementById('reg-user').value = '';
+    document.getElementById('reg-pass').value = '';
+    document.getElementById('reg-conf').value = '';
+  }
+  function authLogin() {
+    var user = document.getElementById('log-user').value.trim();
+    var pass = document.getElementById('log-pass').value;
+    var msg  = document.getElementById('log-msg');
+    if (!user || !pass) { msg.textContent = 'Please enter username and password.'; msg.className = 'auth-msg err'; return; }
+    if (!authUsers[user]) { msg.textContent = 'User not found. Please register first.'; msg.className = 'auth-msg err'; return; }
+    if (authUsers[user].password !== pass) { msg.textContent = 'Incorrect password.'; msg.className = 'auth-msg err'; return; }
+    authLoggedInUser = authUsers[user];
+    document.querySelectorAll('.auth-tab').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.auth-screen').forEach(function(x){ x.classList.remove('active'); });
+    document.getElementById('auth-success-name').textContent = 'Hello, ' + authLoggedInUser.name + '! Login Successful.';
+    document.getElementById('auth-success').classList.add('active');
+  }
+  function authLogout() {
+    authLoggedInUser = null;
+    document.getElementById('auth-success').classList.remove('active');
+    document.querySelectorAll('.auth-tab').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelectorAll('.auth-screen').forEach(function(x){ x.classList.remove('active'); });
+    document.querySelector('.auth-tab').classList.add('active');
+    document.getElementById('auth-register').classList.add('active');
+    document.getElementById('log-user').value = '';
+    document.getElementById('log-pass').value = '';
+  }
+</script>
+</body>
+</html>
